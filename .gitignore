@@ -1,0 +1,28 @@
+EOF
+## .NET ##
+**/bin/
+**/obj/
+[Bb]uild/
+[Pp]ublish/
+
+## VS Code ##
+.vscode/
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+
+## Docker ##
+**/docker-compose.*.yml
+**/docker-compose/
+**/.dockerignore
+
+## NuGet ##
+**/packages/
+*.nupkg
+
+## Misc ##
+*.user
+*.suo
+*.userprefs
+appsettings.Development.json
+EOF
