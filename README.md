@@ -39,7 +39,7 @@ Antes de comenzar, asegúrate de tener instalados los siguientes componentes:
 - [.NET 8 SDK](https://dotnet.microsoft.com/download/dotnet/8.0)
 - [Docker Desktop](https://www.docker.com/products/docker-desktop/)
 - [Git](https://git-scm.com/)
-- Editor recomendado: [VS Code](https://code.visualstudio.com/)
+- Editores recomendados: [VS Code](https://code.visualstudio.com/), [Visual Studio 2022](https://visualstudio.microsoft.com/es/vs/)
 
 ---
 
@@ -48,7 +48,7 @@ Antes de comenzar, asegúrate de tener instalados los siguientes componentes:
 Clona el repositorio y restaura las dependencias del proyecto:
 
 ```bash
-git clone https://github.com/tu-usuario/hecoto_backend.git
+git clone https://github.com/santiago-morfe/hecoto_backend
 cd hecoto_backend
 
 dotnet restore HecotoBackend.sln
