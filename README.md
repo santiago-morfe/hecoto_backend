@@ -9,11 +9,14 @@ Backend API desarrollado en .NET 8 con arquitectura por capas, contenedores Dock
 ---
 
 ## 📌 Características Principales
-- Arquitectura por capas (API, Application, Domain, Infrastructure).
-- Inyección de dependencias (DI).
-- Entity Framework Core para gestión de base de datos.
-- Contenedorización con Docker.
-- Pruebas unitarias con xUnit.
+
+- **Arquitectura por capas**: Separación en capas (API, Application, Domain, Infrastructure) para una mejor organización y mantenibilidad.
+- **Inyección de dependencias (DI)**: Uso de servicios y repositorios inyectados para desacoplar componentes.
+- **Autenticación y Autorización**: Implementación de JWT para la autenticación de usuarios.
+- **Entity Framework Core**: Gestión de base de datos con soporte para PostgreSQL.
+- **Contenedorización con Docker**: Configuración lista para ejecutar en contenedores Docker.
+- **Pruebas unitarias**: Configuración de pruebas con xUnit y Coverlet para cobertura de código.
+- **Configuración flexible**: Uso de `appsettings.json` y secretos de usuario para manejar configuraciones sensibles.
 
 ---
 
@@ -114,6 +117,30 @@ docker build -t hecoto-backend -f API/Dockerfile .
 ```bash
 docker run -p 5000:80 hecoto-backend
 ```
+
+---
+
+## ✨ Funcionalidades Actuales
+
+### Autenticación y Autorización
+- **Inicio de sesión**: Los usuarios pueden autenticarse mediante credenciales (usuario y contraseña) para obtener un token JWT.
+- **Roles de usuario**: Soporte para roles (`Admin`, `User`) definidos en la enumeración `UserRole`.
+
+### Gestión de Usuarios
+- **Registro de usuarios**: Implementación de un servicio para registrar nuevos usuarios con contraseñas encriptadas.
+- **Actualización y eliminación**: Métodos para actualizar y eliminar usuarios (pendiente de implementación en controladores).
+
+### Seguridad
+- **Hashing de contraseñas**: Uso de BCrypt para almacenar contraseñas de forma segura.
+- **Tokens de actualización (Refresh Tokens)**: Gestión de tokens de actualización para sesiones prolongadas.
+
+### Base de Datos
+- **PostgreSQL**: Configuración de conexión a base de datos mediante Entity Framework Core.
+- **Migraciones**: Soporte para migraciones de base de datos (pendiente de implementación).
+
+### API REST
+- **Controladores**: Controlador `AuthController` para manejar la autenticación.
+- **Documentación Swagger**: Generación automática de documentación para la API.
 
 ---
 

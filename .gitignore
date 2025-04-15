@@ -25,4 +25,5 @@ EOF
 *.suo
 *.userprefs
 appsettings.Development.json
+appsettings.Production.json
 EOF
