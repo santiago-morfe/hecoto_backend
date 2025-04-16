@@ -27,6 +27,7 @@ public class LoginResponseDTO
 public class RefreshTokenRequestDTO
 {
     public string RefreshToken { get; set; } = string.Empty;
+    public string AccessToken { get; set; } = string.Empty;
 }
 
 public class RefreshTokenResponseDTO

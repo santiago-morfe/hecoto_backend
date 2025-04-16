@@ -1,13 +1,15 @@
+using System.ComponentModel.DataAnnotations;
 namespace Hecoto.Backend.Domain.Entities;
 
 public class RefreshToken
 {
-    public Guid Id { get; set; }
-    public int UserId { get; set; } // Cambiado de Guid a int para que coincida con la clave primaria de User
-    public string Token { get; set; } = string.Empty;
-    public DateTime CreatedAt { get; set; }
-    public DateTime ExpiresAt { get; set; }
-    public bool IsRevoked { get; set; }
+    [Key]
+    public int Id { get; set; }
+    public required string Token { get; set; }
+    public required int UserId { get; set; }
+    public required DateTime CreatedAt { get; set; }
+    public required DateTime ExpiresAt { get; set; }
+    public bool IsRevoked { get; set; } = false;
 
     // Navigation property
     public User User { get; set; } = null!;

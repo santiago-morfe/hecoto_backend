@@ -22,8 +22,11 @@ public class AuthController(IAuthService authService, IUserService userService )
 
         try
         {
-            var refreshToken = await _authService.AuthenticateAsync(request.Username, request.Password);
-            var accessToken = await _authService.RefreshTokenAsync(refreshToken);
+            var  (accessToken, refreshToken) = await _authService.AuthenticateAsync(request.Username, request.Password);
+            if (string.IsNullOrEmpty(accessToken) || string.IsNullOrEmpty(refreshToken))
+            {
+                return Unauthorized("Invalid credentials");
+            }
 
             return Ok(new LoginResponseDTO { AccessToken = accessToken, RefreshToken = refreshToken });
         }
@@ -37,14 +40,14 @@ public class AuthController(IAuthService authService, IUserService userService )
     [AllowAnonymous]
     public async Task<IActionResult> RefreshToken([FromBody] RefreshTokenRequestDTO request)
     {
-        if (string.IsNullOrEmpty(request.RefreshToken))
+        if (string.IsNullOrEmpty(request.RefreshToken) || string.IsNullOrEmpty(request.AccessToken))
         {
-            return BadRequest("Refresh token is required.");
+            return BadRequest("Refresh token and access token are required.");
         }
 
         try
         {
-            var newAccessToken = await _authService.RefreshTokenAsync(request.RefreshToken);
+            var newAccessToken = await _authService.RefreshTokenAsync(request.RefreshToken, request.AccessToken);
             return Ok(new RefreshTokenResponseDTO { AccessToken = newAccessToken });
         }
         catch (UnauthorizedAccessException)
@@ -71,9 +74,7 @@ public class AuthController(IAuthService authService, IUserService userService )
                 return BadRequest("User already exists.");
             }
             
-            var refreshToken = await _authService.AuthenticateAsync(request.Username, request.Password);
-
-            var accessToken = await _authService.RefreshTokenAsync(refreshToken);
+            var ( accessToken, refreshToken) = await _authService.AuthenticateAsync(request.Username, request.Password);
 
             return Ok(new RegisterResponseDTO { AccessToken = accessToken, RefreshToken = refreshToken });
         }

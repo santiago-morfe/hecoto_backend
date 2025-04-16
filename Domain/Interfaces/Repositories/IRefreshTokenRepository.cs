@@ -5,9 +5,9 @@ using System;
 public interface IRefreshTokenRepository
 {
     Task AddRefreshTokenAsync(RefreshToken token);
-    Task DeleteRefreshTokenAsync(int tokenId);
+    Task DeleteRefreshTokenAsync(int id);
     Task<IEnumerable<RefreshToken>> GetRefreshTokensByUserIdAsync(int userId);
-    Task<RefreshToken?> GetRefreshTokenByIdAsync(int tokenId);
+    Task<RefreshToken?> GetRefreshTokenByIdAsync(int id);
     Task<RefreshToken?> GetRefreshTokenByUserIdAsync(int userId);
     Task<RefreshToken?> GetRefreshTokenByTokenAsync(string token);
 }

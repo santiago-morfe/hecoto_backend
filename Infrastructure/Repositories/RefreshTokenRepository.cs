@@ -28,10 +28,10 @@ public class RefreshTokenRepository(ApplicationDbContext context) : IRefreshToke
 
     public async Task DeleteRefreshTokenAsync(int tokenId)
     {
-        var token = await _context.RefreshTokens.FindAsync(tokenId);
-        if (token != null)
+        var refreshToken = await _context.RefreshTokens.FindAsync(tokenId);
+        if (refreshToken != null)
         {
-            _context.RefreshTokens.Remove(token);
+            _context.RefreshTokens.Remove(refreshToken);
             await _context.SaveChangesAsync();
         }
     }

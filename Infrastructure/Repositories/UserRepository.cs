@@ -45,4 +45,9 @@ public class UserRepository(ApplicationDbContext context) : IUserRepository
     {
         return await _context.Users.ToListAsync();
     }
+
+    public Task<IEnumerable<RefreshToken>> GetRefreshTokensByUserIdAsync(int userId)
+    {
+        return Task.FromResult(_context.RefreshTokens.Where(rt => rt.UserId == userId).AsEnumerable());
+    }
 }
